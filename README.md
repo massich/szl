@@ -7,12 +7,16 @@ Usage
 -----
 
 ### log levels
+```
 {debug, error, wraning, info, verbose}
+```
 
 ### logging macros
+```
 LOG(info) << "my message" << my_variable << "my second message" << szl::config << my_second_variable ;
 DLOG() << same;
 WLOG() ...
+```
 
 Design
 ------
