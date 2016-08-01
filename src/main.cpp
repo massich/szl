@@ -8,6 +8,6 @@ int main()
   Sink _sink ;
   Logger _logger ;
 
-  _sink.log() ;
+  _sink.log("Hello, world\n") ;
   _logger.log() ;
 }
