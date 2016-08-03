@@ -16,10 +16,10 @@ class Sink {
 
 };
 
-/* class NullSink : public Sink { */
-/*  public: */
-/*   void log (const std::string message) {}; */
-/* }; */
+class NullSink : public Sink {
+ public:
+  void log (const std::string message) {};
+};
 
 
 enum class LogLevel {FATAL, CRITIC, ERROR, WARNING, INFO, TRACE, CRAZY} ;
@@ -37,7 +37,7 @@ class Logger {
   Sink* s ;
 
  public:
- Logger( const LogLevel _level=LogLevel::CRITIC, Sink* s=nullptr) : my_logging_level(_level) {} ;
-  as_integer(my_logging_level) log(){std::cout << "hi Logger says " << as_integer(my_logging_level) << std::endl;} ;
+  Logger( const LogLevel _level=LogLevel::CRITIC, Sink* s=nullptr) : my_logging_level(_level) {} ;
+  void log(){std::cout << "hi Logger says " << as_integer(my_logging_level) << std::endl;} ;
 } ;
 
