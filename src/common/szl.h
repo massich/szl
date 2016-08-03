@@ -24,6 +24,13 @@ class Sink {
 
 enum class LogLevel {FATAL, CRITIC, ERROR, WARNING, INFO, TRACE, CRAZY} ;
 
+template <typename Enumeration>
+auto as_integer(Enumeration const value)
+-> typename std::underlying_type<Enumeration>::type
+{
+  return static_cast<typename std::underlying_type<Enumeration>::type>(value);
+}
+
 class Logger {
  private:
   LogLevel my_logging_level ;
@@ -31,6 +38,6 @@ class Logger {
 
  public:
  Logger( const LogLevel _level=LogLevel::CRITIC, Sink* s=nullptr) : my_logging_level(_level) {} ;
-  void log(){std::cout << "hi Logger says " << my_logging_level << std::endl;} ;
+  as_integer(my_logging_level) log(){std::cout << "hi Logger says " << as_integer(my_logging_level) << std::endl;} ;
 } ;
 
