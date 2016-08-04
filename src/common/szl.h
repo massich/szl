@@ -37,7 +37,10 @@ class Logger {
   Sink* s ;
 
  public:
-  Logger( const LogLevel _level=LogLevel::CRITIC, Sink* s=nullptr) : my_logging_level(_level) {} ;
+  Logger( const LogLevel _level=LogLevel::CRITIC)
+    : my_logging_level(_level), s(nullptr) {} ;
   void log(const LogLevel l, const std::string message);
+  void setSink (Sink* _s) {s=_s;};
+  Sink* getSinkPtr () {return s;};
 } ;
 
