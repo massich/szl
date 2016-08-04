@@ -13,7 +13,7 @@ class Sink {
   Sink (const std::string _file_name="/tmp/log.txt") : file_name(_file_name) {file.open(file_name);};
   ~Sink() ;
   void log (const std::string message) ;
-
+  void describe() {std::cout << "Sink::\"" << file_name <<"\"" << std::endl;};
 };
 
 class NullSink : public Sink {
@@ -38,6 +38,6 @@ class Logger {
 
  public:
   Logger( const LogLevel _level=LogLevel::CRITIC, Sink* s=nullptr) : my_logging_level(_level) {} ;
-  void log(){std::cout << "hi Logger says " << as_integer(my_logging_level) << std::endl;} ;
+  void log(const LogLevel l, const std::string message);
 } ;
 
