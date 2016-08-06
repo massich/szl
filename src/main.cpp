@@ -4,7 +4,8 @@
 
 int main()
 {
+  // using the object logger and two parameters function
   Logger _logger ;
-
   _logger.log( LogLevel::FATAL, "hi") ;
+
 }
