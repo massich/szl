@@ -1,5 +1,4 @@
 #pragma once
-
 #include <iostream>
 
 enum class LogLevel {FATAL, CRITIC, ERROR, WARNING, INFO, TRACE, CRAZY} ;
@@ -20,6 +19,7 @@ std::ostream& operator<< (std::ostream& os, LogLevel level)
   return os;
 }
 
-decltype(auto) LOG(LogLevel l=LogLevel::FATAL){
-  return std::cout << "[" << l << "]: ";
+std::ostream& LOG(LogLevel l=LogLevel::FATAL){
+  auto& logStream = std::cout << "[" << l << "]: ";
+  return (logStream);
 }
