@@ -4,5 +4,6 @@
 
 int main()
 {
-  LOG() << "hello world\n";
+  LOG() << "hello world, the default logging is FATAL\n";
+  LOG(LogLevel::INFO) << "this is an INFO message\n";
 }
