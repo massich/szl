@@ -34,7 +34,6 @@ auto as_integer(Enumeration const value)
 class Logger {
  private:
   LogLevel my_logging_level ;
-  Sink* s ;
 
  public:
   Logger( const LogLevel _level=LogLevel::CRITIC) : my_logging_level(_level) {} ;
