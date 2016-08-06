@@ -13,7 +13,7 @@ int main()
   _sink.describe();
 
   Sink _sink2 ("/tmp/log2.txt") ;
-  Logger _logger2( LogLevel::CRAZY, &_sink2) ;
+  Logger _logger2( LogLevel::CRAZY) ;
   _sink2.log("hw 2");
   _sink2.describe();
   _sink.describe();
