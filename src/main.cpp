@@ -8,7 +8,7 @@ decltype(auto) xx(LogLevel l, std::ostream& os){
 
 decltype(auto) give_me_the_fucking_cout()
 {
-  return std::cout << "hi";
+  return (std::cout) ;
 }
 
 int main()
@@ -17,4 +17,5 @@ int main()
   LOG(LogLevel::INFO) << "this is an INFO message\n";
 
   xx(LogLevel::INFO, give_me_the_fucking_cout()) << "this is xx function called from main\n";
+  xx(LogLevel::CRITIC, (std::cout)) << "this is xx function called from main\n";
 }
