@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+#include <sstream>
 #include "common/szl.h"
 
 decltype(auto) xx(LogLevel l, std::ostream& os){
@@ -13,9 +14,15 @@ decltype(auto) give_me_the_fucking_cout()
 
 int main()
 {
-  LOG() << "hello world, the default logging is FATAL\n";
-  LOG(LogLevel::INFO) << "this is an INFO message\n";
+  std::ostringstream local;
+  auto cout_buff = std::cout.rdbuf();
 
-  xx(LogLevel::INFO, give_me_the_fucking_cout()) << "this is xx function called from main\n";
-  xx(LogLevel::CRITIC, (std::cout)) << "this is xx function called from main\n";
+  std::cout.rdbuf(local.rdbuf()); // cout-buffer points to local
+
+  LOG() << "hello world, the default logging is FATAL\n";
+
+  // go back to old buffer
+  std::cout.rdbuf(cout_buff);
+
+  std::cout << "local content: -------\n" << local.str() << "-------\n";
 }
