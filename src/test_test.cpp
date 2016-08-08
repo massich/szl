@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include "common/szl.h"
 #include "tests/unit/szl_operation.h"
-//#include "tests/integration/szl_thread.h"
+#include "tests/integration/szl_thread.h"
 
 int main(int ac, char* av[])
 {
