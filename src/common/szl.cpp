@@ -1,5 +1,13 @@
 #include "szl.h"
 
+class wrong_LogLevel_exeption: public std::bad_cast
+ {
+   virtual const char* what() const throw()
+   {
+     return "Wrong LogLevel";
+   }
+} wrong_LogLevel;
+
 std::ostream& operator<< (std::ostream& os, LogLevel level)
 {
   switch(level)
@@ -11,7 +19,7 @@ std::ostream& operator<< (std::ostream& os, LogLevel level)
     case LogLevel::INFO    : os << "info";    break;
     case LogLevel::TRACE   : os << "trace";   break;
     case LogLevel::CRAZY   : os << "crazy";   break;
-    default    : os.setstate(std::ios_base::failbit);
+    default: throw wrong_LogLevel;
     }
   return os;
 }

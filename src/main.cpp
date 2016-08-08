@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+#include <fstream>
 #include <sstream>
 #include "common/szl.h"
 
@@ -19,10 +20,24 @@ int main()
 
   std::cout.rdbuf(local.rdbuf()); // cout-buffer points to local
 
-  LOG() << "hello world, the default logging is FATAL\n";
+  LOG() << "hi" ;
 
   // go back to old buffer
   std::cout.rdbuf(cout_buff);
 
-  std::cout << "local content: -------\n" << local.str() << "-------\n";
+  std::cout << "Good: " << local.good() << " Fail: " << local.fail() << " BAD: " << local.bad() << std::endl;
+
+  std::ostringstream local2;
+  auto cout_buff2 = std::cout.rdbuf();
+
+  std::cout.rdbuf(local2.rdbuf()); // cout-buffer points to local2
+
+  LOG( static_cast<LogLevel>(-1)) << "hi" ;
+
+  // go back to old buffer
+  std::cout.rdbuf(cout_buff2);
+
+  std::cout << "Good: " << local2.good() << " Fail: " << local2.fail() << " BAD: " << local2.bad() << std::endl;
+
+  
 }

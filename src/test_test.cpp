@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
-
-TEST(foo,bar){std::cout << "hi" << std::endl;}
+#include "common/szl.h"
+#include "tests/unit/szl_operation.h"
+//#include "tests/integration/szl_thread.h"
 
 int main(int ac, char* av[])
 {
