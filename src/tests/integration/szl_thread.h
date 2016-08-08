@@ -6,17 +6,19 @@
 #include <iostream>
 #include <vector>
 
+int var_loker = 0;
 template <typename T>
 void log_id(T id){
   LOG() << "Hello from thread " << id << "\n";
 }
 
 void thread_call(){
+  while(var_loker > 0){};
   log_id( std::this_thread::get_id() ) ;
 }
 
 TEST(thread, foo){
-
+  var_loker = 1;
   /// CONSTRUCT THE LOG WITH THREADS
   std::ostringstream local;
   auto cout_buff = std::cout.rdbuf();
@@ -32,7 +34,7 @@ TEST(thread, foo){
     /* threads.push_back(t); */
     /* threads_name.push_back(t.get_id()); */
   }
-
+  var_loker=0;
   for(auto& thread : threads){
     thread.join();
   }
