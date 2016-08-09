@@ -39,7 +39,6 @@ INCLUDE_DIRECTORIES("${CMAKE_SOURCE_DIR}/src/")
 set(EXEC_NAME main)
 add_executable(${EXEC_NAME} ./src/main.cpp)
 
-
 set(APP_DEPS
     common
     )
@@ -47,21 +46,7 @@ set(APP_DEPS
 target_link_libraries(${EXEC_NAME} common)
 
 # test
-add_subdirectory(src/tests/unit/)
-add_subdirectory(src/tests/integration/)
-add_executable(gtest_test
-  ./src/test_test.cpp
-  ${SRCS_UTEST_ALL}
-  ${SRCS_ITEST_ALL}
-  )
-
-set(
-    TESTS_DEPS
-    ${APP_DEPS}
-    ${GTEST_LIBRARIES}
-    )
-
-target_link_libraries(gtest_test ${TESTS_DEPS})
+add_subdirectory(src/tests)
 
 # verbose cmake variable status
 if(CMAKE_VERBOSE)

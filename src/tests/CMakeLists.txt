@@ -1,2 +1,17 @@
-file(GLOB_RECURSE maintesting_sources *.cpp *.cc)
-file(GLOB_RECURSE maintesting_headers *.h *.hpp)
+file(GLOB_RECURSE tst_sources *.cpp *.cc)
+file(GLOB_RECURSE tst_headers *.h *.hpp)
+
+set( SRC_TESTS
+     ${tst_sources}
+     ${tst_headers}
+)
+
+add_executable(gtest_test test_test.cpp ${SRC_TESTS})
+
+set(
+    TESTS_DEPS
+    ${APP_DEPS}
+    ${GTEST_LIBRARIES}
+    )
+
+target_link_libraries(gtest_test ${TESTS_DEPS})
