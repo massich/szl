@@ -49,23 +49,6 @@ TEST_F(szlBasicFixture, log_levels_default){
   ASSERT_STREQ( "[fatal]: test", captured_stream->str().c_str() );
 }
 
-TEST_F(szlBasicFixture, wrong_enum){
-  try {
-    LOG( static_cast<LogLevel>(-1) ) << "test";
-  } catch(std::bad_cast const & err) {
-    EXPECT_EQ( std::string("Wrong LogLevel"), err.what() );
-  }
-}
-
-TEST_F(szlBasicFixture, wrong_enum2){
-  std::ostringstream local;
-  try {
-    local << static_cast<LogLevel>(-1);
-  } catch(std::bad_cast const & err) {
-    EXPECT_EQ( std::string("Wrong LogLevel"), err.what() );
-  }
-}
-
 TEST_F(szlBasicFixture, log_unknown_object){
   /* Here you don't see if the problem is with streaming the LogLevel or the
    * object after it
