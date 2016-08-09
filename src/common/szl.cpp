@@ -23,6 +23,7 @@ std::ostream& operator<< (std::ostream& os, LogLevel level)
     }
   return os;
 }
+
 std::mutex log_mutex;
 std::ostream& LOG(LogLevel level){
   std::lock_guard<std::mutex> lock(log_mutex);
