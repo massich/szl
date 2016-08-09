@@ -46,7 +46,14 @@ set(APP_DEPS
 
 target_link_libraries(${EXEC_NAME} common)
 
-add_executable(gtest_test ./src/test_test.cpp)
+# test
+add_subdirectory(src/tests/unit/)
+add_subdirectory(src/tests/integration/)
+add_executable(gtest_test
+  ./src/test_test.cpp
+  ${SRCS_UTEST_ALL}
+  ${SRCS_ITEST_ALL}
+  )
 
 set(
     TESTS_DEPS
