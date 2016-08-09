@@ -14,6 +14,17 @@ void thread_call(){
   LOG() << "Hello from thread " << id << "\n";
 }
 
+void check_thread_call(const std::string _s){
+  /// TODO: make it check as a regular expression (message+int+\n)
+  std::stringstream ss(_s);
+  std::string current_line;
+  const std::string message = "[fatal]: Hello from thread";
+  while(std::getline(ss,current_line,'\n')){
+    std::string kk = current_line.substr(0, message.length());
+    EXPECT_STRCASEEQ(message.c_str(), kk.c_str() );
+  }
+}
+
 TEST(thread, foo){
   var_loker = 1;
   /// CONSTRUCT THE LOG WITH THREADS
@@ -37,5 +48,6 @@ TEST(thread, foo){
 
   // go back to old buffer
   std::cout.rdbuf(cout_buff);
-  std::cout << local.str();
+
+  check_thread_call(local.str());
 }
