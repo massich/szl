@@ -1,8 +1,5 @@
 #pragma once
 #include <iostream>
-#include <exception>
-#include <mutex>
-#include <typeinfo>
 
 enum class LogLevel {FATAL, CRITIC, ERROR, WARNING, INFO, TRACE, CRAZY} ;
 
