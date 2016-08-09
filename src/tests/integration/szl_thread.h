@@ -7,14 +7,11 @@
 #include <vector>
 
 int var_loker = 0;
-template <typename T>
-void log_id(T id){
-  LOG() << "Hello from thread " << id << "\n";
-}
 
 void thread_call(){
+  auto id(std::this_thread::get_id());
   while(var_loker > 0){};
-  log_id( std::this_thread::get_id() ) ;
+  LOG() << "Hello from thread " << id << "\n";
 }
 
 TEST(thread, foo){
@@ -26,7 +23,6 @@ TEST(thread, foo){
 
   const int _n_threads(4);
   std::vector<std::thread> threads;
-  std::vector<std::thread::id> threads_name;
 
   for(int i = 0; i < _n_threads; ++i){
     threads.push_back( std::thread(thread_call) );
@@ -39,19 +35,7 @@ TEST(thread, foo){
     thread.join();
   }
 
-  /// CONSTRUCT THE LOG WITHOUT THREADS
-  std::ostringstream local_no_thread;
-  std::cout.rdbuf(local_no_thread.rdbuf());
-
-  for(auto& thread : threads){
-    threads_name.push_back(thread.get_id()) ;
-  }
-  for(auto& name : threads_name){
-    log_id(name);
-  }
-
   // go back to old buffer
   std::cout.rdbuf(cout_buff);
   std::cout << local.str();
-  std::cout << local_no_thread.str();
 }
