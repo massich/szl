@@ -4,7 +4,7 @@ set (CMAKE_CXX_FLAGS_DEBUG          "-g -O0 -DDEBUG")
 set (CMAKE_CXX_FLAGS_RELEASE        "-O3")
 
 if(WARNINGS_AS_ERRORS)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werr")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
 endif()
 
 if(OPT_ASAN)
