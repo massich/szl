@@ -3,6 +3,7 @@ Motivation
 
 The aim of this project is to implement a single header logger library in `cpp` so that I can improve my coding skills and increase my efficency in developing software.
 
+
 Usage
 -----
 
