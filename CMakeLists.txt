@@ -46,9 +46,9 @@ if (NOT GTest_FOUND)
   endforeach()
 
   add_library(GTest ${GTEST_SOURCES})
-else
+else()
   include_directories(${GTEST_INCLUDE_DIRS})
-endif
+endif()
 
 
 
