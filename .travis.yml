@@ -33,11 +33,11 @@ before_install:
   - sudo apt-get install -qq build-essential cmake git-core lcov ggcov 
 
 before_script:
-  - sudo ldconfig -v | grep gtest
+  - sudo ldconfig -v 
   # - mkdir build
   # - cd build
   # - cmake -DCMAKE_CXX_COMPILER=$COMPILER .. 
 
 script:
-  - make
-  - ./src/tests/gtest_test
+  # - make
+  # - ./src/tests/gtest_test
