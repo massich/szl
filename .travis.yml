@@ -1,7 +1,35 @@
+# Use new trusty images, should yield newer compilers and packages
+sudo: required
+dist: precise
 language: cpp
 
 compiler:
   - gcc
+  - clang
+
+matrix:
+  include:
+    
+    - os: linux
+      compiler: gcc
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-5
+      env: COMPILER=g++-5
+    
+    - os: linux
+      compiler: clang
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-precise-3.8
+          packages:
+            - clang-3.8
+      env: COMPILER=clang++-3.8
 
 before_install:
   - sudo apt-get update -qq
@@ -10,6 +38,8 @@ before_install:
 before_script:
   - mkdir build
   - cd build
-  - cmake -DCMAKE_CXX_COMPILER=$(which g++) -DCMAKE_C_COMPILER=$(which gcc) ../
+  - cmake -DCMAKE_CXX_COMPILER=$COMPILER .. 
 
-script: make
+script:
+  - make
+  - ./src/tests/gtest_test
