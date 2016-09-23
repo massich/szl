@@ -27,28 +27,8 @@ include(src/cmake/compiler_definition_options.cmake REQUIRED)
 # Load code dependencies and their configuration
 #
 ## Find Google Test
-# find_package(GTest)
-# if (NOT GTest_FOUND)
-  set(GTEST_ROOT src/third_party/googletest/googletest CACHE STRING "Google Test source root")
-
-  include_directories(
-      ${PROJECT_SOURCE_DIR}/${GTEST_ROOT}
-      ${PROJECT_SOURCE_DIR}/${GTEST_ROOT}/include
-      )
-
-  set(GTEST_SOURCES
-      ${PROJECT_SOURCE_DIR}/${GTEST_ROOT}/src/gtest-all.cc
-      ${PROJECT_SOURCE_DIR}/${GTEST_ROOT}/src/gtest_main.cc
-      )
-
-  foreach(_source ${GTEST_SOURCES})
-      set_source_files_properties(${_source} PROPERTIES GENERATED 1)
-  endforeach()
-
-  add_library(GTest ${GTEST_SOURCES})
-# else()
-#   include_directories(${GTEST_INCLUDE_DIRS})
-# endif()
+find_package(GTest)
+include_directories(${GTEST_INCLUDE_DIRS})
 
 
 
