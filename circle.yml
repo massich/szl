@@ -13,6 +13,9 @@ machine:
     # The email is to be used for commits in the Github Page
     EMAIL: "mailsik@gmail.com"
 
+    # Dependencies url 
+    CMAKE_URL: "http://www.cmake.org/files/v3.5/cmake-3.5.2-Linux-x86_64.tar.gz"
+
 dependencies:
 
   # Various dependencies
@@ -21,7 +24,6 @@ dependencies:
     # Install CMake (3.5)
     #######################################
     #
-    - CMAKE_URL="http://www.cmake.org/files/v3.5/cmake-3.5.2-Linux-x86_64.tar.gz"
     - mkdir cmake
     - wget --no-check-certificate --quiet -O -  ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
     - export PATH=${PWD}/cmake/bin:${PATH}
