@@ -1,0 +1,33 @@
+machine:
+  environment:
+    # The github organization or username of the repository which hosts the
+    # project and documentation.
+    USERNAME: "massich"
+
+    # The repository where the documentation will be hosted
+    DOC_REPO: "szl"
+
+    # The base URL for the Github page where the documentation will be hosted
+    DOC_URL: ""
+
+    # The email is to be used for commits in the Github Page
+    EMAIL: "mailsik@gmail.com"
+
+dependencies:
+
+  # Various dependencies
+  pre:
+    ############### (before_install 1 of 1)
+    # Install CMake (3.5)
+    #######################################
+    #
+    - CMAKE_URL="http://www.cmake.org/files/v3.5/cmake-3.5.2-Linux-x86_64.tar.gz"
+    - mkdir cmake
+    - travis_retry wget --no-check-certificate --quiet -O -  ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
+    - export PATH=${PWD}/cmake/bin:${PATH}
+
+  override:
+    - mkdir build
+    - cd build
+    - cmake --version
+    - cmake -DCMAKE_CXX_COMPILER=$(which g++) .. 
