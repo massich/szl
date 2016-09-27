@@ -30,6 +30,4 @@ dependencies:
 
   override:
     - mkdir build
-    - cd build
-    - cmake --version
-    - cmake -DCMAKE_CXX_COMPILER=$(which g++) .. 
+    - cd build && cmake --version && cmake -DCMAKE_CXX_COMPILER=$(which g++) .. 
