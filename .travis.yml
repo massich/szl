@@ -32,6 +32,8 @@ before_install:
   - mkdir cmake
   # - travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
   - echo "wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake"
+  - wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
+  - travis_retry wget --no-check-certificate --quiet -O -${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
   - export PATH=${PWD}/cmake/bin:${PATH}
 
 before_script:
