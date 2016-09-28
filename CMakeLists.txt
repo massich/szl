@@ -31,7 +31,7 @@ include(src/cmake/findDependencies.cmake REQUIRED)
 # Add project libraries
 add_subdirectory(src/common/)
 
-# INCLUDE_DIRECTORIES("${CMAKE_SOURCE_DIR}/src/")
+include_directories("${CMAKE_SOURCE_DIR}/src/")
 
 #targets
 set(EXEC_NAME main)
