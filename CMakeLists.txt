@@ -28,25 +28,25 @@ include(src/cmake/findDependencies.cmake REQUIRED)
 ####
 
 
-# # Add project libraries
-# add_subdirectory(src/common/)
+# Add project libraries
+add_subdirectory(src/common/)
 
 # INCLUDE_DIRECTORIES("${CMAKE_SOURCE_DIR}/src/")
 
-# #targets
-# set(EXEC_NAME main)
-# add_executable(${EXEC_NAME} ./src/main.cpp)
+#targets
+set(EXEC_NAME main)
+add_executable(${EXEC_NAME} ./src/main.cpp)
 
-# set(APP_DEPS
-#     common
-#     )
+set(APP_DEPS
+    common
+    )
 
-# target_link_libraries(${EXEC_NAME} common)
+target_link_libraries(${EXEC_NAME} common)
 
-# # test
-# add_subdirectory(src/tests)
+# test
+add_subdirectory(src/tests)
 
-# # verbose cmake variable status
-# if(CMAKE_VERBOSE)
-#   include(src/cmake/verbose_config.cmake)
-# endif()
+# verbose cmake variable status
+if(CMAKE_VERBOSE)
+  include(src/cmake/verbose_config.cmake)
+endif()
