@@ -4,9 +4,8 @@
 # - GTEST_LIBRARIES - libgtest
 
 ExternalProject_Add(
-  googletest                      # Name for custom target
-  #   [DEPENDS projects...]       # Targets on which the project depends
-  # TODO: project depends on GIT
+  googletest-repo                 # Name for custom target
+  DEPENDS Git                     # Targets on which the project depends
   #   [PREFIX dir]                # Root dir for entire project (no need since EP_PREFIX is defined)
   #   [LIST_SEPARATOR sep]        # Sep to be replaced by ; in cmd lines
   #   [TMP_DIR dir]               # Directory to store temporary files
@@ -48,7 +47,7 @@ ExternalProject_Add(
   #  #--Build step-----------------
   #   [BINARY_DIR dir]            # Specify build dir location
   #   [BUILD_COMMAND cmd...]      # Command to drive the native build
-  BUILD_COMMAND make COMMAND echo "Done building Gtest" 
+  BUILD_COMMAND ""
   #   [BUILD_IN_SOURCE 1]         # Use source dir for build dir
   #  #--Install step---------------
   #   [INSTALL_DIR dir]           # Installation prefix
@@ -69,10 +68,22 @@ ExternalProject_Add(
   #   [STEP_TARGETS st1 st2 ...]  # Generate custom targets for these steps
 )
 
+ExternalProject_Get_Property(googletest-repo source_dir)
+# Build gtest from existing sources
+ExternalProject_Add(
+    googletest-googletest
+    DEPENDS googletest-repo
+    DOWNLOAD_COMMAND ""           # No download required
+    SOURCE_DIR ${source_dir}/googletest # here is where the src are based on googletest-repo external project
+    BUILD_COMMAND make COMMAND "DONE with GTest, I hope :S" # Compile GTest
+    INSTALL_COMMAND ""
+    LOG_CONFIGURE ON
+    LOG_BUILD ON
+)
 
 # Specify dir variables
-ExternalProject_Get_Property(googletest source_dir binary_dir)
-set(GTEST_INCLUDE_DIRS ${source_dir}/googletest/include/gtest)
+ExternalProject_Get_Property(googletest-googletest source_dir binary_dir)
+set(GTEST_INCLUDE_DIRS ${source_dir}/include/gtest)
 set(GTEST_LIBRARIES ${binary_dir})
 
 ## TODO: ensure that the target_link_libraries is properly set. here's an example:
