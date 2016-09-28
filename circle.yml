@@ -30,4 +30,9 @@ dependencies:
 
   override:
     - mkdir build
-    - export PATH=${PWD}/cmake/bin:${PATH} && cd build && cmake --version && cmake -DCMAKE_CXX_COMPILER=$(which g++) .. 
+    - export PATH=${PWD}/cmake/bin:${PATH} && cd build && cmake --version && cmake -DCMAKE_CXX_COMPILER=$(which g++) .. && make
+
+test:
+  override:
+    - ./szl/build/src/tests/gtest_test
+    
