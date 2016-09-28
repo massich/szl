@@ -23,8 +23,12 @@ endif()
 ###
 #   Add GTest
 ###########################################
-find_package(GTest)
-if (NOT GTest_FOUND)
-  include(src/cmake/download_gtest.cmake REQUIRED)
-endif(NOT GTest_FOUND)
+# find_package(GTest)
+# if (NOT GTest_FOUND)
+#   include(src/cmake/download_gtest.cmake REQUIRED)
+# endif(NOT GTest_FOUND)
+# include_directories(${GTEST_INCLUDE_DIRS})
+
+# TODO: uncomment find_package
+include(src/cmake/download_gtest.cmake REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})

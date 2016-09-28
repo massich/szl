@@ -150,3 +150,7 @@ MESSAGE( STATUS "CMAKE_RANLIB: " ${CMAKE_RANLIB} )
 #MESSAGE( STATUS ": " ${} )
 
 # ------------------------- End of Generic CMake Variable Logging -----------------
+
+## Show GTest library paths
+MESSAGE( STATUS "GTEST_INCLUDE_DIRS: " ${GTEST_INCLUDE_DIRS} )
+MESSAGE( STATUS "GTEST_LIBRARIES: " ${GTEST_LIBRARIES} )

@@ -72,10 +72,8 @@ ExternalProject_Add(
 
 # Specify dir variables
 ExternalProject_Get_Property(googletest source_dir binary_dir)
-message("sik - before set- a : ${GTEST_INCLUDE_DIRS} b: ${GTEST_LIBRARIES}")
-set(GTEST_INCLUDE_DIRS ${source_dir}/include)
+set(GTEST_INCLUDE_DIRS ${source_dir}/googletest/include/gtest)
 set(GTEST_LIBRARIES ${binary_dir})
-message("sik - after setting the variables- a : ${GTEST_INCLUDE_DIRS} b: ${GTEST_LIBRARIES}")
 
 ## TODO: ensure that the target_link_libraries is properly set. here's an example:
 # target_link_libraries(
