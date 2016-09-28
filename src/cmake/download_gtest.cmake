@@ -1,9 +1,12 @@
-# More info at https://cmake.org/cmake/help/v3.0/module/ExternalProject.html
-include(ExternalProject)
+## This script Adds GTest sources, compiles them and sets the following
+#  variables, in order to comply with find_package(GTest):
+# - GTEST_INCLUDE_DIRS - Include directories
+# - GTEST_LIBRARIES - libgtest
 
 ExternalProject_Add(
-  googletest-master               # Name for custom target
+  googletest                      # Name for custom target
   #   [DEPENDS projects...]       # Targets on which the project depends
+  # TODO: project depends on GIT
   #   [PREFIX dir]                # Root dir for entire project (no need since EP_PREFIX is defined)
   #   [LIST_SEPARATOR sep]        # Sep to be replaced by ; in cmd lines
   #   [TMP_DIR dir]               # Directory to store temporary files
@@ -40,15 +43,17 @@ ExternalProject_Add(
   #   [CMAKE_COMMAND /.../cmake]  # Specify alternative cmake executable
   #   [CMAKE_GENERATOR gen]       # Specify generator for native build
   #   [CMAKE_GENERATOR_TOOLSET t] # Generator-specific toolset name
-  #   [CMAKE_ARGS args...]        # Arguments to CMake command line
+  CMAKE_ARGS -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE} # Arguments to CMake command line
   #   [CMAKE_CACHE_ARGS args...]  # Initial cache arguments, of the form -Dvar:string=on
   #  #--Build step-----------------
   #   [BINARY_DIR dir]            # Specify build dir location
   #   [BUILD_COMMAND cmd...]      # Command to drive the native build
+  BUILD_COMMAND make COMMAND echo "Done building Gtest" 
   #   [BUILD_IN_SOURCE 1]         # Use source dir for build dir
   #  #--Install step---------------
   #   [INSTALL_DIR dir]           # Installation prefix
   #   [INSTALL_COMMAND cmd...]    # Command to drive install after build
+  INSTALL_COMMAND ""              # Disable Install step
   #  #--Test step------------------
   #   [TEST_BEFORE_INSTALL 1]     # Add test step executed before install step
   #   [TEST_AFTER_INSTALL 1]      # Add test step executed after install step
@@ -65,4 +70,15 @@ ExternalProject_Add(
 )
 
 
-message("after download_gtest.cmake, the include should be here: ${GTEST_INCLUDE_DIRS}")
+# Specify dir variables
+ExternalProject_Get_Property(googletest source_dir binary_dir)
+message("sik - before set- a : ${GTEST_INCLUDE_DIRS} b: ${GTEST_LIBRARIES}")
+set(GTEST_INCLUDE_DIRS ${source_dir}/include)
+set(GTEST_LIBRARIES ${binary_dir})
+message("sik - after setting the variables- a : ${GTEST_INCLUDE_DIRS} b: ${GTEST_LIBRARIES}")
+
+## TODO: ensure that the target_link_libraries is properly set. here's an example:
+# target_link_libraries(
+#     MainTest
+#     debug ${binary_dir}/DebugLibs/${CMAKE_FIND_LIBRARY_PREFIXES}gtest${Suffix}
+#     optimized ${binary_dir}/ReleaseLibs/${CMAKE_FIND_LIBRARY_PREFIXES}gtest${Suffix}
