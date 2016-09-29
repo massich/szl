@@ -5,7 +5,7 @@
 
 ExternalProject_Add(
   googletest-repo                 # Name for custom target
-  DEPENDS Git                     # Targets on which the project depends
+  #   [DEPENDS projects...]       # Targets on which the project depends
   #   [PREFIX dir]                # Root dir for entire project (no need since EP_PREFIX is defined)
   #   [LIST_SEPARATOR sep]        # Sep to be replaced by ; in cmd lines
   #   [TMP_DIR dir]               # Directory to store temporary files
