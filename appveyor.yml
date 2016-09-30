@@ -42,9 +42,6 @@ build_script:
     {
         return
     }
-    pwd
-    cd c:\projects
-    dir
     md _build -Force | Out-Null
     cd _build
 
