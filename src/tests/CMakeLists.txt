@@ -14,4 +14,4 @@ set(
     ${GTEST_LIBRARIES}
     )
 
-target_link_libraries(gtest_test ${TESTS_DEPS})
+target_link_libraries(gtest_test gtest gmock_main ${TESTS_DEPS})

@@ -75,15 +75,18 @@ ExternalProject_Add(
     DEPENDS googletest-repo
     DOWNLOAD_COMMAND ""           # No download required
     SOURCE_DIR ${source_dir}/googletest # here is where the src are based on googletest-repo external project
-    BUILD_COMMAND make COMMAND "DONE with GTest, I hope :S" # Compile GTest
-    INSTALL_COMMAND ""
+    BUILD_COMMAND make #COMMAND "DONE with GTest, I hope :S" # Compile GTest
+    INSTALL_COMMAND "" #make insatall    # Command to drive install after build
     LOG_CONFIGURE ON
     LOG_BUILD ON
 )
 
 # Specify dir variables
-ExternalProject_Get_Property(googletest-googletest source_dir binary_dir)
-set(GTEST_INCLUDE_DIRS ${source_dir}/include/gtest)
+ExternalProject_Get_Property(googletest-googletest source_dir binary_dir install_dir)
+message("SIK: source ${source_dir}")
+message("SIK: bin ${binary_dir}")
+message("SIK: install ${install_dir}")
+set(GTEST_INCLUDE_DIRS ${install_dir}) #${source_dir}/include/gtest)
 set(GTEST_LIBRARIES ${binary_dir})
 
 ## TODO: ensure that the target_link_libraries is properly set. here's an example:
