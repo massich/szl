@@ -24,23 +24,21 @@ endif()
 ###
 #   Add GTest
 ###########################################
-# find_package(GTest)
-# if (NOT GTest_FOUND)
-#   # include(src/cmake/download_gtest.cmake REQUIRED)
-# endif(NOT GTest_FOUND)
-# include_directories(${GTEST_INCLUDE_DIRS})
+find_package(GTest)
 
-# # TODO: uncomment find_package
-# include(src/cmake/download_gtest.cmake REQUIRED)
-# include_directories(${GTEST_INCLUDE_DIRS})
-include(CTest)
-download_project(PROJ                googletest
-                 GIT_REPOSITORY      https://github.com/google/googletest.git
-                 GIT_TAG             master
-                 ${UPDATE_DISCONNECTED_IF_AVAILABLE}
-)
-# Prevent GoogleTest from overriding our compiler/linker options
-# when building with Visual Studio
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+if (NOT GTest_FOUND)
+  download_project(PROJ                googletest
+                  GIT_REPOSITORY      https://github.com/google/googletest.git
+                  GIT_TAG             "release-1.8.0"
+  )
 
-add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
+  # Prevent GoogleTest from overriding our compiler/linker options
+  # when building with Visual Studio
+  set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+
+  add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
+
+else(NOT GTest_FOUND)
+  include_directories(${GTEST_INCLUDE_DIRS})
+
+endif(NOT GTest_FOUND)

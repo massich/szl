@@ -1,3 +1,4 @@
+include(CTest)
 file(GLOB_RECURSE tst_sources *.cpp *.cc)
 file(GLOB_RECURSE tst_headers *.h *.hpp)
 
@@ -14,4 +15,6 @@ set(
     ${GTEST_LIBRARIES}
     )
 
-target_link_libraries(gtest_test gtest gmock_main ${TESTS_DEPS})
+target_link_libraries(gtest_test gtest ${TESTS_DEPS})
+
+add_test(NAME gtest_test COMMAND gtest_test)
